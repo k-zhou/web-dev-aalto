@@ -12,4 +12,4 @@
 <label for={todo.id}>
     {todo.name} ({todo.done ? "done" : "not done"})
 </label>
-<button onclick={todoState.remove(todo)}>Remove</button>
+<button onclick={() => todoState.remove(todo.id)}>Remove</button>
