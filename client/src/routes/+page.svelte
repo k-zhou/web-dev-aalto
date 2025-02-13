@@ -1,5 +1,8 @@
 <script>
-  import Todos from "$lib/components/Todos.svelte";
+  import Location from "$lib/components/Location.svelte";
+  import Movement from "$lib/components/Movement.svelte";
 </script>
 
-<Todos />
+<Location />
+<Movement />
+
