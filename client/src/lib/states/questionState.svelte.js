@@ -23,7 +23,7 @@ const useQuestionState = () => {
     },
     upvote: (id) => {
       const q = questionState.find((q) => q.id === id);
-      q.upvotes++;
+      q.count++;
       saveQuestions();
     },
     remove: (id) => {

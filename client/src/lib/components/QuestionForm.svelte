@@ -4,7 +4,7 @@
     
     const addQuestion = (e) => {
         let fd = new FormData(e.target);
-        fd.append("upvotes", 1);
+        fd.append("count", 0);
         const q = Object.fromEntries(fd);
         q.id = crypto.randomUUID();
         questionState.add(q);
