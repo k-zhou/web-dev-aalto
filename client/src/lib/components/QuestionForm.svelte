@@ -18,7 +18,7 @@
         <br />
         <input id="name" name="title" type="text" placeholder="Entitle your question" />
         <br />
-        <input id="name" name="details" type="text" placeholder="Describe the question" />
+	<textarea id="name" name="details" placeholder="Describe the question"></textarea>
         <br />
         <input type="submit" value="Add Question" />
         <br />
