@@ -1,6 +1,7 @@
 # Web Software Development
 2025 Spring - self-study course
 
+Deployed at https://k-zhou-web-dev-aalto.deno.dev
 
 The project is containerised using ***Docker***. 
 
