@@ -1,5 +1,9 @@
 <script>
-  import Todos from "$lib/components/Todos.svelte";
+  import Questions from "$lib/components/Questions.svelte";
+  import Spells from "$lib/components/Spells.svelte";
 </script>
 
-<Todos />
+<Questions />
+<br />
+<h1>Spells</h1>
+<Spells />
