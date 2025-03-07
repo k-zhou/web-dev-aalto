@@ -61,3 +61,25 @@ if (browser && localStorage.hasOwnProperty(VAR_KEY)) {
 let to_save = 0
 localStorage.setItem(VAR_KEY, to_save);
 ```
+
+## HTML Forms
+
+- binding values
+- onchange, onclick, on ...
+
+https://developer.mozilla.org/en-US/docs/Web/API/FormData
+
+##### Example
+```html
+<!-- This is a comment -->
+
+```
+```html
+<!-- the "name" field is used for labeling the form field -->
+<!-- the for field matches the id field -->
+<!--
+  Many types exist
+-->
+<label for="name">Question</label>
+<input id="name" name="title" type="text" placeholder="Entitle your question" />
+```
