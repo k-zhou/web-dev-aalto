@@ -6,7 +6,7 @@
 
 <h3>{question.title}</h3>
 <p>{question.details}</p>
-Upvotes: {question.count}
+<p>Upvotes: {question.count}</p>
 <button onclick={() => questionState.upvote(question.id)}>Upvote</button>
 <br />
 <button onclick={() => questionState.remove(question.id)}>Delete</button>
