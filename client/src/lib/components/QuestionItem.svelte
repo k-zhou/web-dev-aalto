@@ -5,8 +5,8 @@
 </script>
 
 <h3>{question.title}</h3>
-<p>{question.details}</p>
-<p>Upvotes: {question.count}</p>
+<p>{question.text}</p>
+<p>Upvotes: {question.upvotes}</p>
 <button onclick={() => questionState.upvote(question.id)}>Upvote</button>
 <br />
 <button onclick={() => questionState.remove(question.id)}>Delete</button>
