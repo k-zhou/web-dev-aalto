@@ -1,5 +1,5 @@
 <script>
-  import Questions from "$lib/components/Questions.svelte";
+  import TTGWidgets from "$lib/components/TTGWidgets.svelte";
 </script>
 
-<Questions />
+<TTGWidgets />
