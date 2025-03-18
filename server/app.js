@@ -1,8 +1,10 @@
 import { Hono } from "@hono/hono";
 import { cors } from "@hono/hono/cors";
 import { logger } from "@hono/hono/logger";
+import { zValidator } from "zValidator";
 import postgres from "postgres";
 import * as todoRepository from "./todoRepository.js";
+import * as validators from "./validators.js"
 
 const app = new Hono();
 const sql = postgres();
@@ -22,15 +24,15 @@ app.get("/", (c) => {
 app.get("/todos", async (c) => {
   return c.json(await todoRepository.readAll());
 });
-app.post("/todos", async (c) => {
-  const todo = await c.req.json();
+app.post("/todos", zValidator("json", validators.todo), async (c) => {
+  const todo = await c.req.valid("json");
   return c.json(await todoRepository.create(todo));
 });
 app.get("/todos/:id", async (c) => {
   return c.json(await todoRepository.readOne(c.req.param("id")));
 });
-app.put("/todos/:id", async (c) => {
-  const todo = await c.req.json();
+app.put("/todos/:id", zValidator("json", validators.todo), async (c) => {
+  const todo = await c.req.valid("json");
   return c.json(await todoRepository.update(c.req.param("id"), todo));
 });
 app.delete("/todos/:id", async (c) => {
