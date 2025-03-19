@@ -11,26 +11,26 @@ jobs:
       id-token: write
       contents: read
       
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
           
-        - name: Install Deno
-          uses: denoland/setup-deno@v2
-          with:
-            deno-version: v2.x
-            
-        - name: Load dependencies
-          run: deno install --allow-scripts
-          working-directory: ./client
-          
-        - name: Build client
-          run: deno run --env-file=.env.production build
-          working-directory: ./client
-          
-        - name: Upload to Deno Deploy
-          uses: denoland/deployctl@v1
-          with:
-            project: ttg-widgets
-            entrypoint: index.js
-            root: ./client/build
+      - name: Load dependencies
+        run: deno install --allow-scripts
+        working-directory: ./client
+        
+      - name: Build client
+        run: deno run --env-file=.env.production build
+        working-directory: ./client
+        
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: ttg-widgets
+          entrypoint: index.js
+          root: ./client/build
