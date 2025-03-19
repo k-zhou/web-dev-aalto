@@ -34,3 +34,26 @@ jobs:
           project: k-zhou-web-dev-aalto
           entrypoint: index.js
           root: ./client/build
+          
+  deploy-server:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      id-token: write
+      contents: read
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+        
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: kzhou-webdev-aalto-server
+          entrypoint: app.js
+          root: ./server
