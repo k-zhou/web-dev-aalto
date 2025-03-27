@@ -62,6 +62,18 @@ app.delete("/courses/:id/questions/:qId", (c) => {
   return c.json(removed);
 });
 
+// This section is for an exercise round
+import * as feedbackRepository from "./feedbackRepository.js";
+
+app.get("/feedbacks/:grading", async (c) => {
+  return c.json({ "count": await feedbackRepository.get(c.req.param("grading")) });
+});
+
+app.post("/feedbacks/:grading", async (c) => {
+  return c.json({ "count": await feedbackRepository.update(c.req.param("grading")) });
+});
+
+
 // Template
 // app.get("", (c) => {
 
