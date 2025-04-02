@@ -1,7 +1,9 @@
 import { Hono } from "@hono/hono";
 import { cors } from "@hono/hono/cors";
 import { logger } from "@hono/hono/logger";
-import postgres from "postgres";
+
+import * as courseController from "./courseController.js";
+import * as questionController from "./questionController.js";
 
 const app = new Hono();
 
@@ -19,32 +21,21 @@ const query = async (query) => {
     }
   }
 
-  const sql = postgres({
-    max: 2,
-    max_lifetime: 10,
-  });
-  return await sql.unsafe(query);
+//   const sql = postgres({
+//     max: 2,
+//     max_lifetime: 10,
+//   });
+//   return await sql.unsafe(query);
 };
 
-app.get("/*", (c) => {
-  return c.html(`
-    <html>
-      <head>
-        <title>Hello, world!</title>
-      </head>
-      <body>
-        <h1>Hello, world!</h1>
-        <p>To use this, make a POST with a JSON document in the request body. The query property of the JSON document will be used to query a database.</p>
-        <p>There are no tables though, so you can only do simple queries like "SELECT 1 + 1".</p>
-      </body>
-    </html>
-    `);
-});
+app.get("/api/courses", courseController.getAllCourses);
+app.get("/api/courses/:id", courseController.getOneCourse);
+app.post("/api/courses", ...courseController.createCourse);
+app.delete("/api/courses/:id", courseController.deleteCourse);
 
-app.post("/*", async (c) => {
-  const body = await c.req.json();
-  const result = await query(body.query);
-  return c.json({"result": result});
-});
+app.get("/api/courses/:id/questions", questionController.getQuestions);
+app.post("/api/courses/:id/questions", ...questionController.addQuestion);
+app.post("/api/courses/:id/questions/:qId/upvote", questionController.upvoteQuestion);
+app.delete("/api/courses/:id/questions/:qId", questionController.deleteQuestion);
 
 export default app;
