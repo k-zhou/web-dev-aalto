@@ -1,9 +1,13 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import  tailwindcss  from "@tailwindcss/vite";
 import * as fs from 'node:fs';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		tailwindcss(),
+		sveltekit()
+	],
 	// server: {
 	//         https: {
 	//             key: fs.readFileSync(`${__dirname}/cert/key.pem`),
