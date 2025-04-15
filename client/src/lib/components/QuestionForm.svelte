@@ -1,6 +1,7 @@
 <script>
 import { useQuestionState } from "$lib/states/questionState.svelte.js";
-let questionState = useQuestionState();
+const { id } = $props();
+let questionState = useQuestionState(id);
 
 const addQuestion = (e) => {
     let fd = new FormData(e.target);
