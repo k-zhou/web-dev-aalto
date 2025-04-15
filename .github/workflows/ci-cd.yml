@@ -23,6 +23,14 @@ jobs:
       - name: Install TailwindCSS
         run: deno install --dev npm:tailwindcss npm:@tailwindcss/vite
         working-directory: ./client
+
+      - name: Install Tailwind forms plugin
+        run: deno install --dev npm:@tailwindcss/forms
+        working-directory: ./client
+
+      - name: Install Skeleton
+        run: deno install --dev npm:@skeletonlabs/skeleton@next npm:@skeletonlabs/skeleton-svelte@next
+        working-directory: ./client
           
       - name: Load dependencies
         run: deno install --allow-scripts
