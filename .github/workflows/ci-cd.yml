@@ -21,7 +21,7 @@ jobs:
           deno-version: v2.x
 
       - name: Install TailwindCSS
-        run: deno add npm:@tailwindcss/vite
+        run: deno install --dev npm:tailwindcss npm:@tailwindcss/vite
         working-directory: ./client
           
       - name: Load dependencies
