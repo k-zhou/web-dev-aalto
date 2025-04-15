@@ -23,7 +23,11 @@ jobs:
       - name: Load dependencies
         run: deno install --allow-scripts
         working-directory: ./client
-        
+
+      - name: Install TailwindCSS
+        run: add npm:@tailwindcss/vite
+        working-directory: ./client
+      
       - name: Build client
         run: deno run --env-file=.env.production build
         working-directory: ./client
