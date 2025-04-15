@@ -25,7 +25,7 @@ jobs:
         working-directory: ./client
 
       - name: Install TailwindCSS
-        run: add npm:@tailwindcss/vite
+        run: deno add npm:@tailwindcss/vite
         working-directory: ./client
       
       - name: Build client
