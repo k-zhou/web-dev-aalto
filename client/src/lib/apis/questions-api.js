@@ -25,9 +25,9 @@ const fetchWithErrorHandling = async (url, options) => {
     
 };
 
-const getQuestions = async () => {
+const getQuestions = async (id) => {
     const response = await fetchWithErrorHandling(
-        `${PUBLIC_API_URL}/courses/1/questions`, 
+        `${PUBLIC_API_URL}/api/courses/${id}/questions`, 
         {}
     );
 
@@ -37,9 +37,9 @@ const getQuestions = async () => {
         console.log("[!] getQuestion", response.error);
 };
 
-const postQuestion = async (data) => {
+const postQuestion = async (id, data) => {
     const response = await fetchWithErrorHandling(
-        `${PUBLIC_API_URL}/courses/1/questions`,
+        `${PUBLIC_API_URL}/api/courses/${id}/questions`,
         {
             headers: {"Content-Type": "application/json"},
             method: "POST",
@@ -55,9 +55,9 @@ const postQuestion = async (data) => {
     
 };
 
-const upvoteQuestion = async (qId) => {
+const upvoteQuestion = async (id, qId) => {
     const response = await fetchWithErrorHandling(
-        `${PUBLIC_API_URL}/courses/1/questions/${qId}/upvote`, 
+        `${PUBLIC_API_URL}/api/courses/${id}/questions/${qId}/upvote`, 
         {
             method: "POST",
         }
@@ -70,9 +70,9 @@ const upvoteQuestion = async (qId) => {
         console.log("[!] upvoteQuestion", response.error);
 };
 
-const deleteQuestion = async (qId) => {
+const deleteQuestion = async (id, qId) => {
     const response = await fetchWithErrorHandling(
-        `${PUBLIC_API_URL}/courses/1/questions/${qId}`, 
+        `${PUBLIC_API_URL}/api/courses/${id}/questions/${qId}`, 
         {
             method: "DELETE",
         }
