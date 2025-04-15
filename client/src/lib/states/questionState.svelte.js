@@ -1,5 +1,5 @@
-import { browser } from "$app/environment";
 import * as questionApi from "$lib/apis/questions-api.js";
+// import { browser } from "$app/environment";
 
 const QUESTIONS_KEY = "questions_list";
 let initialQuestions = [];
@@ -20,31 +20,31 @@ const fetchQuestions = async (id) => {
     }
 };
 
-const useQuestionState = () => {
+const useQuestionState = (id) => {
   return {
     get questions() {
       return questionState;
     },
     fetch: async () => {
-      await fetchQuestions();
+      await fetchQuestions(id);
     },
-    add: async (id, q) => {
+    add: async (q) => {
       const data = await questionApi.postQuestion(id, q);
       if (data) {
-        await fetchQuestions();
+        await fetchQuestions(id);
       }
     },
-    upvote: async (id, qId) => {
+    upvote: async (qId) => {
       const q = questionState.find((q) => q.id === qId);
       const data = await questionApi.upvoteQuestion(id, q.id);
       if (data) {
-        await fetchQuestions();
+        await fetchQuestions(id);
       }
     },
-    remove: async (id, qId) => {
+    remove: async (qId) => {
       const data = await questionApi.deleteQuestion(id, qId);
       if (data) {
-        await fetchQuestions();
+        await fetchQuestions(id);
       }
     },
   };
