@@ -6,6 +6,7 @@ import * as courseController from "./courseController.js";
 import * as questionController from "./questionController.js";
 
 const app = new Hono();
+app.use("/*", cors());
 
 const BANNED_WORDS = [
   "delete", "update", "insert", "drop", "alter", "create",
