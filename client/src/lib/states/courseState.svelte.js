@@ -26,7 +26,7 @@ const useCourseState = (id) => {
       return courseState;
     },
     getOne: async (id) => {
-      return courseState.find((c) => c.id === id);
+      return await courseApi.getOneCourse(id);
     },
     fetch: async () => {
       await fetchCourses();
