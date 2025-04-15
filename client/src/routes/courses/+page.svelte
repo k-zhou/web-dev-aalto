@@ -3,30 +3,21 @@
 
 <script>
   import { PUBLIC_API_URL } from "$env/static/public";
-  const addr = `${PUBLIC_API_URL}/api/courses`;
+  import { useCourseState } from "$lib/states/courseState.svelte";
   // init
-  let courselist = $state(["default placeholder"]); 
-
+  const courseState = useCourseState();
+  // handles the form
   const addCourse = async (e) => {
     let fd = new FormData(e.target);
     const crs = Object.fromEntries(fd);
-    const response = await fetch(addr, {
-      headers: {"Content-Type": "application/json"},
-      method: "POST",
-      body: JSON.stringify(crs)
-    });
-    
-      e.target.reset();
+    courseState.add(crs);
+
+    e.target.reset();
     e.preventDefault();
   };
-
-  const removeCourse = async (id) => {
-    const response = await fetch(addr.concat(`/${id}`, { method: "DELETE" }));
-  };
-
+  // loads page
   $effect(async () => {
-    const response = await fetch(addr);
-    courselist = await response.json();
+    courseState.fetch();
   });
 </script>
 
@@ -35,10 +26,10 @@
   <h1 class="h1">Courses</h1>
   <!-- List  -->
   <ul>
-    {#each courselist as course}
+    {#each courseState.courses as course}
       <li class="flex border-1 preset-filled-surface-500 border-gray-500 rounded-[0.5vw] p-1">
         <a href="/courses/{course.id}" class="grow">{course.name}</a>
-        <button onclick={() => removeCourse(course.id)} class="btn preset-tonal-secondary">Remove</button>
+        <button onclick={() => courseState.remove(course.id)} class="btn preset-tonal-secondary">Remove</button>
       </li>
     {/each}
   </ul>
@@ -46,7 +37,7 @@
   <hr>
   <!-- Form  -->
   <form onsubmit={addCourse} class="space-y-2">
-    <label for="name" class="h3">Add new course</label>
+    <label for="name" class="h3">Add a new course</label>
     <br />
     <input id="name" name="name" type="text" placeholder="Course name" class="w-full dark:text-black"/>
     <br />
