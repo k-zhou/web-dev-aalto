@@ -4,7 +4,6 @@
   let questionState = useQuestionState(id);
 </script>
 <span class="flex flex-col space-y-1">
-  <hr>
   <span class="flex space-x-2 p2">
     <h3 class="h3 grow">{question.title}</h3>
     <p>Upvotes: {question.upvotes}</p>

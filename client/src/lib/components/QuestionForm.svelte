@@ -15,7 +15,7 @@
   };
 </script>
 
-<form onsubmit={addQuestion}>
+<form onsubmit={addQuestion} class="flex flex-col space-y-0.5">
   <label for="name" class="h3">New Question</label>
   <br />
   <input id="name" name="title" type="text" placeholder="Entitle your question" class="w-full dark:text-black rounded-[0.5vw]"/>
