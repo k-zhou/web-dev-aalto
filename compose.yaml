@@ -18,7 +18,7 @@ services:
     ports:
       - 8000:8000
     env_file:
-      - project.env
+      - production.env
     depends_on:
       - database
 
@@ -36,12 +36,12 @@ services:
     image: postgres:17.0
     restart: unless-stopped
     env_file:
-      - project.env
+      - production.env
 
   database-migrations:
     image: flyway/flyway:10
     env_file:
-      - project.env
+      - production.env
     depends_on:
       - database
     volumes:
