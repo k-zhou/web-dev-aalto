@@ -2,8 +2,8 @@ import { Hono } from "@hono/hono";
 import { cors } from "@hono/hono/cors";
 import { logger } from "@hono/hono/logger";
 
-import * as courseController from "./courseController.js";
-import * as questionController from "./questionController.js";
+import * as courseController from "./handlers/courseController.js";
+import * as questionController from "./handlers/questionController.js";
 
 const app = new Hono();
 app.use("/*", cors());
