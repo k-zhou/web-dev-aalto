@@ -6,11 +6,15 @@
 <div class="flex flex-col h-full">
   <header class="flex items-center bg-primary-100 p-4 mb-6">
     <h1 class="flex text-xl text-primary-900">Courses and Questions</h1>
-    <nav>
+    <nav class="flex">
       <ul class="flex space-x-4 ml-4">
         <li><a class="anchor" href="/">Home</a></li>
         <li><a class="anchor" href="/courses">Courses</a></li>
         <!-- <li><a class="anchor" href="/contact">Contact</a></li> -->
+      </ul>
+      <ul class="flex space-x-4 ml-4">
+        <li><a class="anchor" href="/auth/login">Login</a></li>
+        <li><a class="anchor" href="/auth/register">Register</a></li>
       </ul>
     </nav>
   </header>
