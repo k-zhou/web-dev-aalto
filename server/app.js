@@ -1,12 +1,16 @@
 import { Hono } from "@hono/hono";
 import { cors } from "@hono/hono/cors";
 import { logger } from "@hono/hono/logger";
+import { getCookie, setCookie } from "jsr:@hono/hono@4.6.5/cookie";
 
 import * as courseController from "./handlers/courseController.js";
 import * as questionController from "./handlers/questionController.js";
 
 const app = new Hono();
-app.use("/*", cors());
+app.use("/*", cors({
+  origin: process.env.PUBLIC_FRONT_URL,
+  credentials: true,
+}));
 
 const BANNED_WORDS = [
   "delete", "update", "insert", "drop", "alter", "create",
