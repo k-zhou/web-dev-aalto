@@ -5,6 +5,7 @@ import { getCookie, setCookie } from "jsr:@hono/hono@4.6.5/cookie";
 
 import * as courseController from "./handlers/courseController.js";
 import * as questionController from "./handlers/questionController.js";
+import * as authenticationController from "./handlers/authenticationController.js";
 
 const app = new Hono();
 app.use("/*", cors({
@@ -54,4 +55,12 @@ app.post("/api/courses/:id/questions", ...questionController.addQuestion);
 app.post("/api/courses/:id/questions/:qId/upvote", questionController.upvoteQuestion);
 app.delete("/api/courses/:id/questions/:qId", questionController.deleteQuestion);
 
+//////////////////////////////////////////////
+
+// Authentication
+
+app.post("/api/auth/register", authenticationController.registerUser);
+app.post("/api/auth/login", authenticationController.loginUser);
+
+//////////////////////////////////////////////
 export default app;
