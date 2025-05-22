@@ -33,6 +33,17 @@ const query = async (query) => {
 //   return await sql.unsafe(query);
 };
 
+app.get("/", (c) => {
+  let count = getCookie(c, "count");
+  count = count ? parseInt(count) + 1 : 1;
+  setCookie(c, "count", count, {
+    path: "/",
+    httpOnly: "true",
+    sameSite: "lax"
+  });
+  return c.json(`Hello World! You've visited ${count} ${count == 1 ? "time" : "times"}.`)
+});
+
 app.get("/api/courses", courseController.getAllCourses);
 app.get("/api/courses/:id", courseController.getOneCourse);
 app.post("/api/courses", ...courseController.createCourse);
