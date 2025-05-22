@@ -1,6 +1,13 @@
 <script>
+  import { useUserState } from "$lib/states/userState.svelte.js";
   import "../app.css";
-  let { children } = $props();
+
+  let { children, data } = $props();
+
+  const userState = useUserState();
+  if (data.user) {
+    userState.user = data.user;
+  }
 </script>
 
 <div class="flex flex-col h-full">
@@ -19,7 +26,12 @@
     </nav>
   </header>
   
-  <main class="container mx-auto max-w-2xl grow">
+  <main class="container mx-auto max-w-2xl grow space-y-2">
+    {#if data.user}
+      <span class="flex flex-col space-y-2 bg-gray-700 rounded-[0.5vw] p-2">
+        <p>Hello {userState.user}!</p>
+      </span>
+    {/if}
     {@render children()}
   </main>
   
