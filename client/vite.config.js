@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import  tailwindcss  from "@tailwindcss/vite";
-import * as fs from 'node:fs';
+import * as fs from 'npm:graceful-fs';
 
 export default defineConfig({
 	plugins: [
