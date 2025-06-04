@@ -9,7 +9,10 @@ import * as authenticationController from "./handlers/authenticationController.j
 
 const app = new Hono();
 app.use("/*", cors({
-  origin: process.env.PUBLIC_FRONT_URL,
+  origin: [
+    process.env.PUBLIC_FRONT_URL,
+    process.env.PRIVATE_FRONT_URL
+  ],
   credentials: true,
 }));
 
