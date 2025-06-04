@@ -27,9 +27,9 @@
   </header>
   
   <main class="container mx-auto max-w-2xl grow space-y-2">
-    {#if data.user}
+    {#if data.user?.id}
       <span class="flex flex-col space-y-2 bg-gray-700 rounded-[0.5vw] p-2">
-        <p>Hello {userState.user}!</p>
+        <p>Hello {data.user?.id}!</p>
       </span>
     {/if}
     {@render children()}

@@ -1,5 +1,6 @@
 import { getCookie, setCookie } from "jsr:@hono/hono@4.6.5/cookie";
 import { hash, verify } from "jsr:@denorg/scrypt@4.4.4";
+import * as jwt from "jsr:@hono/hono@4.6.5/jwt";
 import postgres from "postgres";
 
 const sql = postgres(process.env.DATABASE_URL);
@@ -18,6 +19,7 @@ const registerUser = async (c) => {
 
 const loginUser = async (c) => {
   let validationSuccess = false;
+  // Takes the user input data, checks it against the database, and returns the result with a JSON and a JWT
   const data = await c.req.json();
   const result = await sql`SELECT * FROM users
     WHERE email = ${data.email.trim().toLowerCase()}`;
@@ -31,7 +33,15 @@ const loginUser = async (c) => {
   if (validationSuccess) {
     const user = result[0];
     // console.log("server", user, process.env.COOKIE_KEY_AUTH);
-    setCookie(c, process.env.COOKIE_KEY_AUTH, user.id, {
+
+    const payload = {
+      id:   user.id,
+      name: user.name,
+    };
+
+    const token = await jwt.sign(payload, process.env.JWT_SECRET);
+
+    setCookie(c, process.env.COOKIE_KEY_AUTH, token, {
       path: "/",
       httpOnly: "true",
       sameSite: "lax"
@@ -49,4 +59,31 @@ const loginUser = async (c) => {
   }
 };
 
-export { registerUser, loginUser };
+const verifyToken = async (c) => {
+  const token = getCookie(c, process.env.COOKIE_KEY_AUTH);
+  if (!token) {
+    c.status(401);
+    return c.json({
+      "message": "No token found!"
+    });
+  }
+
+  try {
+    const payload = await jwt.verify(token, process.env.JWT_SECRET);
+    // console.log(payload);
+    setCookie(c, process.env.COOKIE_KEY_AUTH, token, {
+      path: "/",
+      httpOnly: "true",
+      sameSite: "lax"
+    });
+    return c.json({"message": "Valid token!"});
+  }
+  catch (e) {
+    c.status(401);
+    return c.json({
+      "message": "Invalid token!"
+    });
+  }
+};
+
+export { registerUser, loginUser, verifyToken };

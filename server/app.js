@@ -61,6 +61,7 @@ app.delete("/api/courses/:id/questions/:qId", questionController.deleteQuestion)
 
 app.post("/api/auth/register", authenticationController.registerUser);
 app.post("/api/auth/login", authenticationController.loginUser);
+app.post("/api/auth/verify", authenticationController.verifyToken);
 
 //////////////////////////////////////////////
 export default app;
