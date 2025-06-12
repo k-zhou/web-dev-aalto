@@ -7,5 +7,12 @@ const questionValidator = z.object({
   title: z.string().min(3),
   text:  z.string().min(3)
 });
+const noteValidator = z.object({
+  text: z.string().min(1)
+});
 
-export { courseValidator, questionValidator };
+export { 
+  courseValidator, 
+  questionValidator, 
+  noteValidator,
+};

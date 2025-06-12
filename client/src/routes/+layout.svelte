@@ -18,8 +18,11 @@
         <li><a class="anchor" href="/">Home</a></li>
         <li><a class="anchor" href="/courses">Courses</a></li>
         <!-- <li><a class="anchor" href="/contact">Contact</a></li> -->
+        <li> | </li>
+        <li><a class="anchor" href="/notes">Notes</a></li>
       </ul>
       <ul class="flex space-x-4 ml-4">
+        <li> | </li>
         <li><a class="anchor" href="/auth/login">Login</a></li>
         <li><a class="anchor" href="/auth/register">Register</a></li>
       </ul>
