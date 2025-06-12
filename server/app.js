@@ -11,35 +11,17 @@ import * as noteController from "./handlers/noteController.js";
 
 import userMiddleware from "./middleware/userMiddleware.js"
 
+import originList from "./origin-list.js";
+
 const app = new Hono();
 app.use("/*", cors({
-  origin: [
-    process.env.PUBLIC_FRONT_URL,
-    process.env.PRIVATE_FRONT_URL
-  ],
+  origin: originList,
   credentials: true,
 }));
 
-const BANNED_WORDS = [
-  "delete", "update", "insert", "drop", "alter", "create",
-  "truncate", "replace", "merge", "grant", "revoke",
-  "transaction", "commit", "rollback", "savepoint", "lock",
-  "execute", "call", "do", "set", "comment"
-];
-const query = async (query) => {
-  // check that the query does not do data manipulation
-  for (const word of BANNED_WORDS) {
-    if (query.toLowerCase().includes(word)) {
-      throw new Error(`You cannot ${word} data`);
-    }
-  }
+//////////////////////////////////////////////
 
-//   const sql = postgres({
-//     max: 2,
-//     max_lifetime: 10,
-//   });
-//   return await sql.unsafe(query);
-};
+///// Non-authenticated routes /////
 
 app.get("/", (c) => {
   let count = getCookie(c, "count");
@@ -93,4 +75,5 @@ app.post("/api/notes/:id", ...noteController.updateNote);
 app.delete("/api/notes/:id", noteController.deleteNote);
 
 //////////////////////////////////////////////
+
 export default app;
