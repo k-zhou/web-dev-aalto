@@ -9,6 +9,9 @@ const useUserState = () => {
     set user(u) {
       user = u;
     },
+    clear: () => {
+      user = {}
+    },
   };
 };
 

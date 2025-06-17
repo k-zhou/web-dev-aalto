@@ -63,6 +63,13 @@ const appProtectRoute = (route,
 
 ///// Authenticated routes /////
 
+// Users
+
+appProtectRoute("/api/users");
+app.get("/api/users", async (c) => {
+  return c.json(["This", "is", "a", "placeholder", "list."]);
+});
+
 // Notes
 
 appProtectRoute("/api/notes/*");
