@@ -33,6 +33,7 @@
     {#if data.user?.id}
       <span class="flex flex-col space-y-2 bg-gray-700 rounded-[0.5vw] p-2">
         <p>Hello {data.user?.id}!</p>
+        <p>Your roles are: {data.user?.roles.join(", ")}</p>
       </span>
     {/if}
     {@render children()}

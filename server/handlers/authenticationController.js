@@ -34,9 +34,17 @@ const loginUser = async (c) => {
     const user = result[0];
     // console.log("server", user, process.env.COOKIE_KEY_AUTH);
 
+    // Get all the user's roles
+    const rolesResult = await sql`SELECT role FROM user_roles
+      WHERE user_id = ${user.id}`;
+    const roles = rolesResult.map((r) => r.role);
+    console.log("roles", roles);
+
     const payload = {
       id:   user.id,
+      roles,
       name: user.name,
+      exp: Math.floor(Date.now()) + 60*60*24*7,
     };
 
     const token = await jwt.sign(payload, process.env.JWT_SECRET);
