@@ -35,28 +35,32 @@
 
 </script>
 
-<h2 class="text-xl">Notes</h2>
+<span class="flex flex-col space-y-2 bg-gray-700 rounded-[0.5vw] p-2">
 
-{#if error}
-  <p class="text-xl">{error}</p>
-{:else}
-  <p>Welcome to the notes page.</p>
-  <hr>
-  <ul>
-    {#each noteState.notes as note}
-      <li><a href="/notes/{note.id}">{note.text}</a></li>
-    {/each}
-    <!-- <li>Length {noteState.notes.length}</li> -->
-    <li class="flex items-center">
-    </li>
-  </ul>
-  <hr>
-  <form onsubmit={addNote} class="space-y-2">
-    <label for="name" class="h3">Add a new note</label>
-    <br />
-    <input id="name" name="text" type="text" placeholder="Note text" bind:value={text} class="w-full dark:text-black"/>
-    <br />
-    <input type="submit" value="Add note" class="btn preset-filled-secondary-500 w-full"/>
-  </form>
-  <hr>
-{/if}
+  <h2 class="text-xl">Notes</h2>
+
+  {#if error}
+    <p class="text-xl">{error}</p>
+  {:else}
+    <p>Welcome to the notes page.</p>
+    <hr>
+    <ul>
+      {#each noteState.notes as note}
+        <li><a href="/notes/{note.id}">{note.text}</a></li>
+      {/each}
+      <!-- <li>Length {noteState.notes.length}</li> -->
+      <li class="flex items-center">
+      </li>
+    </ul>
+    <hr>
+    <form onsubmit={addNote} class="space-y-2">
+      <label for="name" class="h3">Add a new note</label>
+      <br />
+      <input id="name" name="text" type="text" placeholder="Note text" bind:value={text} class="w-full dark:text-black"/>
+      <br />
+      <input type="submit" value="Add note" class="btn preset-filled-secondary-500 w-full"/>
+    </form>
+    <hr>
+  {/if}
+
+</span>
