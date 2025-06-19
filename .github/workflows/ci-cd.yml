@@ -43,7 +43,7 @@ jobs:
       - name: Build client
         run: deno run build
         env:
-          PUBLIC_API_URL: ${{env.PUBLIC_API_URL}}
+          PUBLIC_API_URL: ${{vars.PUBLIC_API_URL}}
         working-directory: ./client
         
       - name: Upload to Deno Deploy
