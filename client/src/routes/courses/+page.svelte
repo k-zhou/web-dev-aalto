@@ -2,10 +2,9 @@
 <!-- Lists all available courses as well as shows a form to add new courses -->
 
 <script>
-  import { PUBLIC_API_URL } from "$env/static/public";
-  import { useCourseState } from "$lib/states/courseState.svelte";
-  // init
+  import { useCourseState } from "$lib/states/courseState.svelte.js";
   const courseState = useCourseState();
+  
   // handles the form
   const addCourse = async (e) => {
     let fd = new FormData(e.target);
