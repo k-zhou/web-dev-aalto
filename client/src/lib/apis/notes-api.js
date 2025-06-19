@@ -1,8 +1,7 @@
 import { PUBLIC_API_URL } from "$env/static/public";
-import { fetchWithTimeout } from "./fetchWithTimeout";
 
 const postNote = async (data, options) => {
-    const response = await fetchWithTimeout(
+    const response = await fetch(
         `${PUBLIC_API_URL}/api/notes`,
         {
             headers: {"Content-Type": "application/json"},
@@ -18,7 +17,7 @@ const postNote = async (data, options) => {
 };
 
 const getAllNotes = async (options) => {
-    const response = await fetchWithTimeout(
+    const response = await fetch(
         `${PUBLIC_API_URL}/api/notes`, 
         {
             ...options
@@ -33,7 +32,7 @@ const getAllNotes = async (options) => {
 };
 
 const getOneNote = async (id, options) => {
-    const response = await fetchWithTimeout(
+    const response = await fetch(
         `${PUBLIC_API_URL}/api/notes/${id}`, 
         {
             ...options
@@ -46,7 +45,7 @@ const getOneNote = async (id, options) => {
 };
 
 const editNote = async (id, data, options) => {
-    const response = await fetchWithTimeout(
+    const response = await fetch(
         `${PUBLIC_API_URL}/api/notes/${id}`,
         {
             headers: {"Content-Type": "application/json"},
@@ -62,7 +61,7 @@ const editNote = async (id, data, options) => {
 };
 
 const deleteNote = async (id, options) => {
-    const response = await fetchWithTimeout(
+    const response = await fetch(
         `${PUBLIC_API_URL}/api/notes/${id}`, 
         {
             method: "DELETE",
