@@ -1,11 +1,11 @@
-import { PUBLIC_INTERNAL_API_URL } from "$env/static/public";
+import { PUBLIC_API_URL } from "$env/static/public";
 import { PUBLIC_COOKIE_KEY_AUTH as init_key_auth } from "$env/static/public";
 import { redirect } from "@sveltejs/kit";
 
 let COOKIE_KEY_AUTH = init_key_auth ?? "auth";
 
 const apiRequest = async (url, data) => {
-  return await fetch(`${PUBLIC_INTERNAL_API_URL}${url}`, {
+  return await fetch(`${PUBLIC_API_URL}${url}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

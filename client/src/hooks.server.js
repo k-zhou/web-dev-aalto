@@ -1,4 +1,4 @@
-import { PUBLIC_INTERNAL_API_URL } from "$env/static/public";
+import { PUBLIC_API_URL } from "$env/static/public";
 import { PUBLIC_COOKIE_KEY_AUTH as init_key_auth } from "$env/static/public";
 import { decodeJwt } from "jose";
 
@@ -12,7 +12,7 @@ export const handle = async ({ event, resolve }) => {
     // Verifies the JWT with the backend. 
     // If successful, assigns the payload as the value of the 
     // "user" property
-    const response = await fetch(`${PUBLIC_INTERNAL_API_URL}/api/auth/verify`, {
+    const response = await fetch(`${PUBLIC_API_URL}/api/auth/verify`, {
       method: "POST",
       headers: {
         "cookie": `${COOKIE_KEY_AUTH}=${authCookie}`
