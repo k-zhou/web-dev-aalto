@@ -39,11 +39,16 @@ jobs:
       - name: Load dependencies
         run: deno install --allow-scripts
         working-directory: ./client
-      
+        
+      - name: 'Create env file'
+        run: |
+          touch .env.production
+          echo PUBLIC_API_URL=${{vars.PUBLIC_API_URL}} >> .env
+          cat .env.production
+        working-directory: ./client
+          
       - name: Build client
-        run: deno run build
-        env:
-          PUBLIC_API_URL: ${{vars.PUBLIC_API_URL}}
+        run: deno run --env-file=.env.production build
         working-directory: ./client
         
       - name: Upload to Deno Deploy
