@@ -40,11 +40,20 @@ jobs:
         run: deno install --allow-scripts
         working-directory: ./client
         
-      - name: 'Create env file'
+      - name: 'Create env file public'
         run: |
           touch .env.production
-          echo PUBLIC_API_URL=${{vars.PUBLIC_API_URL}} >> .env
+          echo PUBLIC_API_URL=${{vars.PUBLIC_API_URL}} >> .env.production
+          echo PUBLIC_INTERNAL_API_URL=${{vars.PUBLIC_INTERNAL_API_URL}} >> .env.production
+          echo COOKIE_KEY_AUTH=${{vars.COOKIE_KEY_AUTH}} >> .env.production
           cat .env.production
+        working-directory: ./client
+
+      - name: 'Create env file private'
+        run: |
+          touch .env
+          echo JWT_SECRET=${{secrets.JWT_SECRET}} >> .env
+          cat .env
         working-directory: ./client
           
       - name: Build client
