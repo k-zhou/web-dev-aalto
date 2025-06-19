@@ -1,7 +1,7 @@
 import postgres from "postgres";
 
 
-const sql = postgres(process.env.DATABASE_URL);
+const sql = postgres();
 // note that all queries return an array even if it only contains one entry
 
 const getAll = async () => {

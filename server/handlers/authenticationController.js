@@ -3,7 +3,7 @@ import { hash, verify } from "jsr:@denorg/scrypt@4.4.4";
 import * as jwt from "jsr:@hono/hono@4.6.5/jwt";
 import postgres from "postgres";
 
-const sql = postgres(process.env.DATABASE_URL);
+const sql = postgres();
 
 const registerUser = async (c) => {
   const data = await c.req.json();
