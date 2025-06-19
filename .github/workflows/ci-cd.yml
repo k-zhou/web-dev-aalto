@@ -45,7 +45,7 @@ jobs:
           touch .env.production
           echo PUBLIC_API_URL=${{vars.PUBLIC_API_URL}} >> .env.production
           echo PUBLIC_INTERNAL_API_URL=${{vars.PUBLIC_INTERNAL_API_URL}} >> .env.production
-          echo COOKIE_KEY_AUTH=${{vars.COOKIE_KEY_AUTH}} >> .env.production
+          echo PUBLIC_COOKIE_KEY_AUTH=${{vars.PUBLIC_COOKIE_KEY_AUTH}} >> .env.production
           cat .env.production
         working-directory: ./client
 
